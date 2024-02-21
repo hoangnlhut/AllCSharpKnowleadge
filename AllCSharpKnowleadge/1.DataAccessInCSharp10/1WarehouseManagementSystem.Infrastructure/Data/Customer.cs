@@ -34,7 +34,6 @@ namespace WarehouseManagementSystem.Infrastructure.Data
                 logo = value;
             }
         }
-           
         public virtual ICollection<Order> Orders { get; set; }
     }
 }
