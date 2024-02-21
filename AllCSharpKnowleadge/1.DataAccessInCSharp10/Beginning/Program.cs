@@ -77,7 +77,6 @@ namespace _1.DataAccessInCSharp10
                 command.Parameters.Add(phoneParameter);
             }
             
-
             sqlConnection.Open();
 
             if (pick == 1 ) {
