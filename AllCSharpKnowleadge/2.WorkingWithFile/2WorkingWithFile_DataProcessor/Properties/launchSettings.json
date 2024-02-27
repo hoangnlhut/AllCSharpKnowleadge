@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "2WorkingWithFile_DataProcessor": {
+      "commandName": "Project",
+      "commandLineArgs": "E:\\LEARNING\\SELF_TRAINING_FOLDER\\AllCSharpKnowledge\\AllCSharpKnowleadge\\AllCSharpKnowleadge\\2.WorkingWithFile\\2WorkingWithFile_DataProcessor\\psdata\\in\\"
+    }
+  }
+}
