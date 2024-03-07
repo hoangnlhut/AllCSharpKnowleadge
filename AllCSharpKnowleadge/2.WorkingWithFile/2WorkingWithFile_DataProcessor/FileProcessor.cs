@@ -71,21 +71,7 @@ namespace _2WorkingWithFile_DataProcessor
             }
             #endregion
 
-            #region getting file extention from a file name
-            string extention = Path.GetExtension(InputFilePath);
-            switch (extention)
-            {
-                case ".txt": 
-                    ProcessTextFile(processingFilePath);
-                    break;
-                default:
-                    Console.WriteLine("Is not properly extention");
-                    break;
-            }
-
-            #endregion
-
-            #region Move file after processing is complete
+            #region getting file extention from a file name, process text file and delete it
             string completedDirectoryPath = Path.Combine(rootDirectoryPath, CompletedDirectoryName);
             if (!Directory.Exists(completedDirectoryPath))
             {
@@ -96,8 +82,41 @@ namespace _2WorkingWithFile_DataProcessor
             string completedFileName = $"{Guid.NewGuid()}_{fileNameWithCompletedExtention}";
             string completedFilePath = Path.Combine(completedDirectoryPath, completedFileName);
 
-            Console.WriteLine($"Moving {processingFilePath} to {completedFilePath}");
-            File.Move (processingFilePath, completedFilePath, true);
+            string extention = Path.GetExtension(InputFilePath);
+            switch (extention)
+            {
+                case ".txt":
+                    TextFileProcessor textProcessor = new TextFileProcessor(processingFilePath, completedFilePath);
+                    textProcessor.Process();
+                    break;
+                case ".data":
+                    BinaryFileProcessor binaryProcesor = new BinaryFileProcessor(processingFilePath, completedFilePath);
+                    binaryProcesor.Process(); 
+                    break;
+                case ".csv":
+                    CsvFileProcessor csvProcessor = new CsvFileProcessor(processingFilePath, completedFilePath);
+                    csvProcessor.Process();
+                    break;
+                default:
+                    Console.WriteLine("Is not properly extention");
+                    break;
+            }
+
+            #endregion
+
+            #region Move file after processing is complete -> remove after add Text File Processor
+            //string completedDirectoryPath = Path.Combine(rootDirectoryPath, CompletedDirectoryName);
+            //if (!Directory.Exists(completedDirectoryPath))
+            //{
+            //    Directory.CreateDirectory(completedDirectoryPath);
+            //}
+
+            //string fileNameWithCompletedExtention = Path.ChangeExtension(inputFileName, ".complete");
+            //string completedFileName = $"{Guid.NewGuid()}_{fileNameWithCompletedExtention}";
+            //string completedFilePath = Path.Combine(completedDirectoryPath, completedFileName);
+
+            //Console.WriteLine($"Moving {processingFilePath} to {completedFilePath}");
+            //File.Move (processingFilePath, completedFilePath, true);
             #endregion
 
             #region Deleting Directory
@@ -107,17 +126,8 @@ namespace _2WorkingWithFile_DataProcessor
                 //second parameter is true mean it will delete sub-directory first and then direct parent directory
                 Directory.Delete(inProgressDirectoryPath, true);
             }
-
-
             #endregion
-
         }
-
-        private void ProcessTextFile(string processingFilePath)
-        {
-            Console.WriteLine($"Processing Text file {processingFilePath}");
-
-            //Read in and process
-        }
+       
     }
 }

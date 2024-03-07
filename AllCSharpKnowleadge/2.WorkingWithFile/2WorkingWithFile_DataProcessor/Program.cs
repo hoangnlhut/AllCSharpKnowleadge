@@ -131,7 +131,7 @@ namespace _2WorkingWithFile_DataProcessor
 
         private static void ProcessFile(CacheEntryRemovedArguments arguments)
         {
-            Console.WriteLine($"* Cache item removed: {arguments.CacheItem.Value} because {arguments.RemovedReason}");
+           Console.WriteLine($"* Cache item removed: {arguments.CacheItem.Value} because {arguments.RemovedReason}");
             if (arguments.RemovedReason == CacheEntryRemovedReason.Expired)
             {
                 ProcessFileFromProperty(arguments.CacheItem.Key);
