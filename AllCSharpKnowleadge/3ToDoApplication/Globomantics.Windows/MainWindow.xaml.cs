@@ -1,8 +1,13 @@
-﻿using Globomantics.Windows.ViewModels;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Globamantics.Domain;
+using Globomantics.Windows.Factory;
+using Globomantics.Windows.Messages;
+using Globomantics.Windows.ViewModels;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -12,13 +17,14 @@ namespace Globomantics.Windows;
 public partial class MainWindow : Window
 {
     private readonly MainViewModel mainViewModel;
+    private readonly ToDoViewModelFactory toDoViewModelFactory;
 
-    public MainWindow(MainViewModel mainViewModel)
+    public MainWindow(MainViewModel mainViewModel, ToDoViewModelFactory toDoViewModelFactory)
     { 
         InitializeComponent();
 
         this.mainViewModel = mainViewModel;
-
+        this.toDoViewModelFactory = toDoViewModelFactory;
         DataContext = mainViewModel;
 
         mainViewModel.ShowSaveFileDialog = () => OpenCreateFileDialog();
@@ -29,6 +35,19 @@ public partial class MainWindow : Window
         mainViewModel.ShowAlert = (message) => {
             MessageBox.Show(message);
         };
+
+        TodoType.ItemsSource = ToDoViewModelFactory.TodoTypes;
+
+        //listen message of ToDoSaved and TodoDeleted
+        WeakReferenceMessenger.Default.Register<ToDoSavedMessage>(this, (sender, message) =>
+        {
+            CreateTodoControlContainer.Children.Clear();
+        });
+        
+        WeakReferenceMessenger.Default.Register<ToDoDeletedMessage>(this, (sender, message) =>
+        {
+            CreateTodoControlContainer.Children.Clear();
+         });
     }
 
     protected override async void OnActivated(EventArgs e)
@@ -47,9 +66,21 @@ public partial class MainWindow : Window
 
     private UserControl CreateUserControl(string type, 
         // TODO: Change object to domain object type
-        object? model = default)
+        ToDo? model = default)
     {
-        throw new NotImplementedException();
+        // idea: should create an instance of the appropriate ViewModel and pass it into the appropriate UserControl
+        // we using factory pattern to deal with this matter
+        IToDoViewModel viewModel = toDoViewModelFactory.CreateViewModel(
+            type, 
+            mainViewModel.Unfinished.ToArray(),
+            model
+            );   
+
+        viewModel.ShowError = (message) => { MessageBox.Show(message); };
+        viewModel.ShowAlert = (message) => { MessageBox.Show(message); };
+        viewModel.ShowOpenFileDialog = () => OpenFileDialog(".jpg", "Images (.jpg)|*.jpg", true);
+
+        return ToDoUserControlFactory.CreateUserControl(viewModel);
     }
 
     private void Search_OnClick(object sender, RoutedEventArgs e)
@@ -77,7 +108,7 @@ public partial class MainWindow : Window
 
         var control = CreateUserControl(
             list.SelectedValue.GetType().Name,
-            list.SelectedValue);
+            list.SelectedValue as ToDo);
 
         CreateTodoControlContainer.Children.Add(control);
 
