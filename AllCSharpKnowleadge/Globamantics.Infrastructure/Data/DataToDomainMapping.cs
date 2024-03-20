@@ -57,7 +57,7 @@ namespace Globamantics.Infrastructure.Data
                 bug.AffectedUsers,
                 MapUser(bug.CreatedBy),
                 MapUser(bug.AssignedTo),
-                bug?.Images?.Select(image => Convert.FromBase64String(image.ImageData)).ToArray() ?? Enumerable.Empty<byte[]>()
+                bug?.Images?.Select(image => Convert.FromBase64String(image.ImageData)).ToArray() ?? Enumerable.Empty<byte[]>().ToArray()
                 )
             {
                 Id = bug.Id,

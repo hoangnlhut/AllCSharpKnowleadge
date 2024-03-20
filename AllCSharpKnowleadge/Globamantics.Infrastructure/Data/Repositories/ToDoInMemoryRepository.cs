@@ -19,7 +19,7 @@ namespace Globamantics.Infrastructure.Data.Repositories
             return Task.CompletedTask;
         }
 
-        public Task<IEnumerable<T>> AllAsync()
+        public Task<IEnumerable<T>> AllAsync(string title = "")
         {
             var items = Items.Values.ToArray();
             return Task.FromResult<IEnumerable<T>>(items);

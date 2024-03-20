@@ -24,16 +24,16 @@ namespace Globamantics.Infrastructure.Data
 
         }
 
-        public override void Dispose()
-        {
-            base.Dispose();
-            _logStream.Dispose();
-        }
+        //public override void Dispose()
+        //{
+        //    base.Dispose();
+        //    _logStream.Dispose();
+        //}
 
-        public override async ValueTask DisposeAsync()
-        {
-            await base.DisposeAsync();
-            await _logStream.DisposeAsync();
-        }
+        //public override async ValueTask DisposeAsync()
+        //{
+        //    await base.DisposeAsync();
+        //    await _logStream.DisposeAsync();
+        //}
     }
 }

@@ -35,6 +35,7 @@ namespace Globamantics.Infrastructure.Data
                 CreatedDate = toDoTask.CreatedDate,
                 IsCompleted = toDoTask.IsCompleted,
                 IsDeleted = toDoTask.IsDeleted,
+                CreatedById = toDoTask.CreatedBy?.Id,
             };
         }
 
@@ -55,7 +56,9 @@ namespace Globamantics.Infrastructure.Data
                 Title = feature.Title,
                 CreatedDate = feature.CreatedDate,
                 IsCompleted = feature.IsCompleted,
-                IsDeleted = feature.IsDeleted
+                IsDeleted = feature.IsDeleted,
+                AssignedToId = feature.AssignedTo?.Id,
+                CreatedById = feature.CreatedBy?.Id,
             };
         }
 
@@ -73,7 +76,9 @@ namespace Globamantics.Infrastructure.Data
                 Title = bug.Title,
                 CreatedDate = bug.CreatedDate,
                 IsCompleted = bug.IsCompleted,
-                IsDeleted = bug.IsDeleted
+                IsDeleted = bug.IsDeleted,
+                AssignedToId = bug.AssignedTo?.Id,
+                CreatedById = bug.CreatedBy?.Id,
             };
         }
     }

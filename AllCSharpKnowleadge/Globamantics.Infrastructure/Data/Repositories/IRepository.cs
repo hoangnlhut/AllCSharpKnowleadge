@@ -8,7 +8,7 @@ namespace Globamantics.Infrastructure.Data.Repositories
     {
         Task<T> GetAsync(Guid id);
         Task<T> FindByAsync(string value);
-        Task<IEnumerable<T>> AllAsync();
+        Task<IEnumerable<T>> AllAsync(string title = "");
         Task AddAsync(T item);
         Task SaveChangeAsync();
     }
