@@ -33,7 +33,7 @@ namespace Globamantics.Infrastructure.Data.Repositories
             }
         }
 
-        public async Task<IEnumerable<User>> AllAsync()
+        public async Task<IEnumerable<User>> AllAsync(string title = "")
         {
             return await Context.Users.Select(x => DataToDomainMapping.MapUser(x)).ToArrayAsync();
         }

@@ -19,13 +19,22 @@ namespace Globamantics.Infrastructure.Data.Repositories
         public abstract Task AddAsync(T item);
         public abstract Task<T> GetAsync(Guid id);
 
-        public virtual async Task<IEnumerable<T>> AllAsync()
+        public virtual async Task<IEnumerable<T>> AllAsync(string title = "")
         {
-            return await Context.ToDoTasks.Where(t => !t.IsDeleted)
+            var result = await Context.ToDoTasks
+                .Where(t => !t.IsDeleted)
                 .Include(t => t.CreatedBy)
                 .Include(t => t.Parent)
                 .Select(x => DataToDomainMapping.MapTodoFromData<Data.Models.ToDoTask, T>(x))
                 .ToArrayAsync();
+
+            if (!string.IsNullOrWhiteSpace(title) && title != "*")
+            {
+                return result.Where(t => !t.IsCompleted &&
+                     t.Title.Contains(title, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return result;
         }
 
         public virtual async Task<T> FindByAsync(string title)

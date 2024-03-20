@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using Globamantics.Domain;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Globomantics.Windows.Json;
 
@@ -13,16 +15,16 @@ public class SerializationBinder : ISerializationBinder
 
     public SerializationBinder()
     {
-        throw new NotImplementedException();
-
-        //AllowedTypes = typeof(Todo)
-        //.Assembly
-        //.GetTypes()
-        //.Where(type => type.IsClass && type.Namespace == typeof(Todo).Namespace)
-        //.Select(type => type.FullName ?? "")
-        //.ToList();
+        // using reflection to find all types in the domain project
+        AllowedTypes = typeof(ToDo)
+        .Assembly
+        .GetTypes()
+        .Where(type => type.IsClass && type.Namespace == typeof(ToDo).Namespace)
+        .Select(type => type.FullName ?? "")
+        .ToList();
 
         AllowedTypes.Add("System.Byte[][]");
+        AllowedTypes.Add(typeof(TodoTask[]).FullName ?? "");
     }
 
     public void BindToName(Type serializedType,
