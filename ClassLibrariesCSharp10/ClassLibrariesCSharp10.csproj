@@ -7,4 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Globalmantics.Math\**" />
+    <EmbeddedResource Remove="Globalmantics.Math\**" />
+    <None Remove="Globalmantics.Math\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Globalmantics.Math\Globalmantics.Math.csproj" />
+  </ItemGroup>
+
 </Project>
