@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Globalmantics.Math\Globalmantics.Math.csproj" />
+  </ItemGroup>
+
 </Project>
