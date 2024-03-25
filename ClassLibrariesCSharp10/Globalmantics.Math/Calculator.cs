@@ -1,4 +1,6 @@
-﻿namespace Globalmantics.Math
+﻿using System;
+
+namespace Globalmantics.Math
 {
     public static class Calculator
     {
@@ -31,6 +33,12 @@ return $"{hex} from .NET Starndard 2.0";
 #endif
             }
         }
+
+        internal static string Internal()
+        {
+            return "Internal Method";
+        }
+
     }
 
    
