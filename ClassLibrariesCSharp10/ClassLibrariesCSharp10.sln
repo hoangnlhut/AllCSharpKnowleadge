@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrariesCSharp10", "ClassLibrariesCSharp10.csproj", "{85E50D69-A0C1-4685-80CC-3BA2151C95AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globalmantics.Math", "Globalmantics.Math\Globalmantics.Math.csproj", "{4FCE6AD0-FFC6-444D-846F-20EEC9F94C1D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfCalculator", "WpfCalculator\WpfCalculator.csproj", "{00151C1B-3F32-4A66-B60C-CFF382E66AC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globomantics.Math.Tests", "Globomantics.Math.Tests\Globomantics.Math.Tests.csproj", "{695E9FCE-A3C0-48E8-84A3-4361AF62E757}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE7D823E-141B-43CF-B315-DD57988C74AD}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Globomantics.NetFramework48", "Globomantics.NetFramework48\Globomantics.NetFramework48.csproj", "{2DEE4D1F-C26E-4419-9C96-808822F58127}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85E50D69-A0C1-4685-80CC-3BA2151C95AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85E50D69-A0C1-4685-80CC-3BA2151C95AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85E50D69-A0C1-4685-80CC-3BA2151C95AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85E50D69-A0C1-4685-80CC-3BA2151C95AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FCE6AD0-FFC6-444D-846F-20EEC9F94C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FCE6AD0-FFC6-444D-846F-20EEC9F94C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FCE6AD0-FFC6-444D-846F-20EEC9F94C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FCE6AD0-FFC6-444D-846F-20EEC9F94C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00151C1B-3F32-4A66-B60C-CFF382E66AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00151C1B-3F32-4A66-B60C-CFF382E66AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00151C1B-3F32-4A66-B60C-CFF382E66AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00151C1B-3F32-4A66-B60C-CFF382E66AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{695E9FCE-A3C0-48E8-84A3-4361AF62E757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{695E9FCE-A3C0-48E8-84A3-4361AF62E757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{695E9FCE-A3C0-48E8-84A3-4361AF62E757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{695E9FCE-A3C0-48E8-84A3-4361AF62E757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DEE4D1F-C26E-4419-9C96-808822F58127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DEE4D1F-C26E-4419-9C96-808822F58127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DEE4D1F-C26E-4419-9C96-808822F58127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DEE4D1F-C26E-4419-9C96-808822F58127}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90393519-7415-403C-AF36-5A6F5F80F1AA}
+	EndGlobalSection
+EndGlobal
