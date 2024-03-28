@@ -16,7 +16,7 @@ namespace WiredBrainCoffee.DataProcessor.Parsing
 
                 var machineDataItem = Parse(csvLine);
                 machineDataItems.Add(machineDataItem);
-            }
+            } 
 
             return machineDataItems.ToArray();
         }
