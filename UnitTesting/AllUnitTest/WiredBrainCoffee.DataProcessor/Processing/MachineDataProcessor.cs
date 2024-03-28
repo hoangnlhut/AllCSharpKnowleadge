@@ -38,6 +38,7 @@ namespace WiredBrainCoffee.DataProcessor.Processing
             }
             else
             {
+
                 _countPerCoffeeType[dataItem.CoffeeType]++;
             }
             _previousItem = dataItem;
