@@ -5,9 +5,9 @@ name: build
 
 on:
   push:
-    branches: [ "developer" ]
+    branches: [ "buildautotestforUnittesting" ]
   pull_request:
-    branches: [ "developer" ]
+    branches: [ "buildautotestforUnittesting" ]
 
 jobs:
   build:
