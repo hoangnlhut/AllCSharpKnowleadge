@@ -18,6 +18,8 @@ namespace WiredBrainCoffee.DataProcessor.Parsing
                 machineDataItems.Add(machineDataItem);
             }
 
+
+
             return machineDataItems.ToArray();
         }
 
