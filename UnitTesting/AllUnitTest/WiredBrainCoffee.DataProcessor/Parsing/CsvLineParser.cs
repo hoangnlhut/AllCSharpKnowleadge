@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using WiredBrainCoffee.DataProcessor.Model;
 
 namespace WiredBrainCoffee.DataProcessor.Parsing
@@ -11,8 +12,9 @@ namespace WiredBrainCoffee.DataProcessor.Parsing
 
             foreach (var csvLine in csvlines)
             {
-                var machineDataItem = Parse(csvLine);
+                if (string.IsNullOrWhiteSpace(csvLine)) continue;
 
+                var machineDataItem = Parse(csvLine);
                 machineDataItems.Add(machineDataItem);
             }
 
@@ -22,8 +24,11 @@ namespace WiredBrainCoffee.DataProcessor.Parsing
         private static MachineDataItem Parse(string csvLine)
         {
             var lineItems = csvLine.Split(';');
+            if(lineItems.Length != 2) throw new Exception($"Invalid csv line: {csvLine}");
 
-            return new MachineDataItem(lineItems[0], DateTime.Parse(lineItems[1], CultureInfo.InvariantCulture));
+            if(!DateTime.TryParse(lineItems[1], out DateTime datetime)) throw new Exception($"Invalid datetime in csv line: {csvLine}");
+
+            return new MachineDataItem(lineItems[0], datetime);
         }
     }
 }

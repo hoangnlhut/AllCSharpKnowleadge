@@ -1,14 +1,23 @@
-﻿using WiredBrainCoffee.DataProcessor.Model;
+﻿using WiredBrainCoffee.DataProcessor.Data;
+using WiredBrainCoffee.DataProcessor.Model;
 
 namespace WiredBrainCoffee.DataProcessor.Processing
 {
     public class MachineDataProcessor
     {
+        private readonly ICoffeeCountStore _coffeeCountStore;
+
+        public MachineDataProcessor(ICoffeeCountStore coffeeCountStore)
+        {
+            _coffeeCountStore = coffeeCountStore;
+        }
         private readonly Dictionary<string, int> _countPerCoffeeType = new();
+        private MachineDataItem? _previousItem;
 
         public void ProcessItems(MachineDataItem[] dataItems)
         {
             _countPerCoffeeType.Clear();
+            _previousItem = null;
 
             foreach (var dataItem in dataItems)
             {
@@ -20,6 +29,9 @@ namespace WiredBrainCoffee.DataProcessor.Processing
 
         private void ProcessItem(MachineDataItem dataItem)
         {
+            // guards statements
+            if (!CHeckItemIsNewer(dataItem)) return;
+
             if (!_countPerCoffeeType.ContainsKey(dataItem.CoffeeType))
             {
                 _countPerCoffeeType.Add(dataItem.CoffeeType, 1);
@@ -28,14 +40,20 @@ namespace WiredBrainCoffee.DataProcessor.Processing
             {
                 _countPerCoffeeType[dataItem.CoffeeType]++;
             }
+            _previousItem = dataItem;
+
+        }
+
+        private bool CHeckItemIsNewer(MachineDataItem dataItem)
+        {
+            return _previousItem == null || _previousItem.CreatedAt < dataItem.CreatedAt;
         }
 
         private void SaveCountPerCoffeeType()
         {
             foreach (var entry in _countPerCoffeeType)
             {
-                var line = $"{entry.Key}:{entry.Value}";
-                Console.WriteLine(line);
+                _coffeeCountStore.Save(new CoffeeCountItem(entry.Key, entry.Value));
             }
         }
     }
